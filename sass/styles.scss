@@ -1,38 +1,104 @@
 // Resets, Clearfix, etc
 
-// Variables
- 
-// Media Query Ranges 
- 
-// Mixins
+@import 'partials/reset';
+@import 'partials/clearfix';
 
-// Styles
-body{
-  background-color: orange;
-  text-align: center;
-  color: #EEE;
+// Variables
+
+$dark-color : gray;
+$light-color : lightblue;
+$bright-color : yellowgreen;
+$padding : 10px;
+$list-color: #222;
+
+//Mixins
+
+@mixin font-size($font-size){
+  font-size: $font-size;
 }
- 
-h1, h2, h3, h4{
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
-}
- 
-h1{
-  padding: 20px;
-}
- 
-h2{
- 
-}
- 
- 
-.block_family{
-  max-width:350px;
-  margin:auto;
-}
- 
-.block_family li{
-  background-color: #222;
+
+@mixin liBlock($fontcolor){
+  background-color: $fontcolor;
   margin-bottom: 20px;
   padding: 20px;
+}
+
+@mixin h1Color($fontcolor){
+  font-size: 45px;
+  color: $fontcolor;
+  padding: 20px;
+}
+@mixin hStyles($fontcolor){
+  font-size: 30px;
+  color: $fontcolor;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+// Media Query Ranges
+
+@media screen and (max-width:600px){
+  body{
+    color: $dark-color;
+    background-color: $bright-color;
+    text-align: center;
+  }
+  .block_family{
+    max-width::400px;
+    margin: auto;
+  }
+  .block_family li{
+    @include liBlock($list-color);
+  }
+  h1, h2, h3, h4{
+    @include hStyles($bright-color);
+  }
+  h1{
+    @include h1Color($light-color);
+  }
+}
+
+@media screen and (min-width: 600px){
+  body{
+    color: $light-color;
+    background-color: $dark-color;
+    text-align: center;
+  }
+  .block_family{
+    max-width:550px;
+    margin: auto;
+  }
+  .block_family li{
+    @include liBlock($list-color);
+    display: inline-block;
+    width: 200px;
+  }
+  h1, h2, h3, h4{
+    @include hStyles($light-color);
+  }
+  h1{
+    @include h1Color($light-color);
+  }
+}
+
+@media screen and (min-width: 900px){
+  body{
+    color: $dark-color;
+    background-color: $bright-color;
+    text-align: center;
+  }
+  .block_family{
+    max-width:700px;
+    margin: auto;
+  }
+  .block_family li{
+    @include liBlock($list-color);
+    display: inline-block;
+    width: 180px;
+  }
+   h1, h2, h3, h4{
+    @include hStyles($light-color);
+  }
+  h1{
+    @include h1Color($light-color);
+  }
 }
